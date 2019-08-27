@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample</title>
+</head>
+<body>
+    <header>
+        <h1>カウントダウン スタート</h1>
+    </header>
+    <section>
+        <script>
+            "use strict";
+            let counter = 10;
+            const timer_id = setInterval(countdown, 1000);
+
+            function countdown() {
+                counter--;
+                console.log(`counter = ${counter}`);
+                if (counter < 0) {
+                    clearInterval(timer_id);
+                } else {
+                    let c = document.getElementById("count");
+                    c.innerHTML = counter;
+                }
+            }
+        </script>
+        <div id="count"></div>
+    </section>
+    
+</body>
+</html>

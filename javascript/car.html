@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Car Sample</title>
+</head>
+<body>
+    <div id="car">
+        <img id="car1" src="pictures/car1.png">
+    </div>
+    <div>
+        <input type="button" id="go" name="btn" value="スタート">
+        <input type="button" id="stop" name="btn2" value="ストップ">
+    </div>
+
+    <script>
+        "use strict";
+        let mgn = 0;
+        let count = 0;
+        let rightLimit = window.innerWidth - 200;
+        let direction = 1; // right:1, left:-1
+        let time = 0;
+        let timer;
+        const distance = 50;
+        const btnObj = document.getElementById("go");
+        const stopObj = document.getElementById("stop");
+
+        function movingCar() {
+            count++;
+            if( direction > 0) {
+                document.getElementById("car1").src = "pictures/car1.png";
+                mgn = count * distance;
+            } else {
+                mgn = rightLimit - (count * distance);
+            }
+            document.getElementById("car1").style.margin = `0 0 0 ${mgn}px`;
+
+            if( rightLimit < (count * distance)) {
+                count = 0;
+                document.getElementById("car1").src = "pictures/car2.png";
+                direction *= -1;
+                time++;
+            }
+            console.log(`margin = ${mgn}`);
+            console.log(`rightLimit = ${rightLimit}`);
+            console.log(`direction = ${direction}`);
+            console.log(`times = ${time}`);
+
+            if( time > 5) {
+                clearInterval(timer);
+            }
+        }
+
+        window.onresize = function() {
+            rightLimit = window.innerWidth;
+        }
+
+        btnObj.onclick = function() {
+            timer = setInterval(movingCar, 50);
+        }
+        stopObj.onclick = function() {
+            clearInterval(timer);
+        }
+    </script>
+    </body>
+</html>

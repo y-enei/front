@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ロケット発射</title>
+<style>
+  #pict { width: 160px; } /* ロケットの画像の大きさを指定 */
+  #button { /* 発射ボタン */
+    font-size: 18pt; background-color: yellow; width: 180px;
+    text-align: center; border-radius: 15px; /* 角を丸くする */
+    cursor: pointer; /* ポインタが上に来たとき、手の形に変える */
+    }
+</style>
+</head>
+<body>
+  <h1>ロケット発射</h1>
+    <img id="pict" src="pictures/rocket1.png" /> 
+    <div id="button">
+    発射
+    </div>
+
+<script type="text/javascript">
+"use strict";
+  let count = 10;
+  let timer;
+  const btnObject = document.getElementById("button");
+
+  function countdown() {
+    count--;
+    document.getElementById("button").innerHTML = `${count}`; 
+    if (count <= 0) {
+      document.getElementById("pict").src = "pictures/rocket2.png"; // 画像を変える
+      document.getElementById("button").innerHTML = "成功！"; //メッセージを変える
+      clearInterval(countdown);
+    }
+  }
+
+  btnObject.onclick = function() {
+    timer = setInterval(countdown, 1000);
+  }
+</script>
+
+</body>
+</html>

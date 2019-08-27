@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>四角を動かす</title>
+</head>
+
+<body>
+  <div id="rectangle" style="background-color: #6DBBA1; width: 200px; height: 180px;">
+  </div>
+  <script>
+    "use strict";
+    let 右端 = 400; //px
+    let 倍率 = 5;
+    let カウンタ = 0;
+    let 方向 = 1; // 1=right -1=left
+    let num = 0;
+    let タイマーID = setInterval(四角を動かす, 10); // 時間は適当な長さに。1/1000単位
+
+    function 四角を動かす() { // setIntervalで、連続して呼び出される
+      カウンタ++;
+      let マージン;
+      if (0 < 方向) {
+        マージン = カウンタ * 倍率;
+      } else {
+        マージン = 右端 - (カウンタ * 倍率);
+      }
+      document.getElementById("rectangle").style.margin = `0 0 0 ${マージン}px`;
+
+      if (右端 < カウンタ * 倍率) {
+        カウンタ = 0;
+        方向 *= -1;
+        num++;
+      }
+
+      if(num > 5) {
+        clearInterval(タイマーID);
+      }
+    }
+  </script>
+
+  </body>
+</html>
